@@ -2,6 +2,8 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use Chat\Chat;
+
 use Ratchet\Server\IoServer;
 use Ratchet\http\HttpServer;
 use Ratchet\WebSocket\WsServer;

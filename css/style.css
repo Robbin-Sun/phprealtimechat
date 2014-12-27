@@ -8,6 +8,15 @@ div, textarea {
     box-sizing: border-box;
 }
 
+#username {
+    margin: 20px;
+    padding: 10px;
+}
+
+#chatcontainer {
+    display: none;
+}
+
 .container {
     height: 100%;
     width: 400px;

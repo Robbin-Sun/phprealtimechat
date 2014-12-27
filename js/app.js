@@ -1,45 +1,31 @@
-var chat = document.getElementById("chatwindow");
-var msg = document.getElementById("messagebox");
+var messagebox = document.getElementById("messagebox");
+var username = document.getElementById("username");
+var chatcontainer = document.getElementById("chatcontainer");
+var conn;
 
-var socket = new WebSocket("ws://127.0.0.1:2000");
-
-var open = false;
-
-function addMessage(msg) {
-    chat.innerHTML += "<p>" + msg + "</p>";
-}
-
-msg.addEventListener('keypress', function(evt) {
-    if (evt.charCode != 13)
+username.addEventListener('keypress', function(evt) {
+    if (evt.charCode != 13 || this.value == "")
         return;
 
     evt.preventDefault();
 
-    if (msg.value == "" || !open)
-        return;
+    var name = this.value;
+    this.style.display = "none";
+    chatcontainer.style.display = "block";
 
-    socket.send(JSON.stringify({
-        msg: msg.value
-    }));
-
-    addMessage(msg.value);
-
-    msg.value = "";
+    conn = new Connection(name, "chatwindow", "127.0.0.1:2000");
 });
 
-socket.onopen = function() {
-    open = true;
+messagebox.addEventListener('keypress', function(evt) {
+    if (evt.charCode != 13 || conn == undefined)
+        return;
 
-    addMessage("Connected");
-};
+    evt.preventDefault();
 
-socket.onmessage = function(evt) {
-    var data = JSON.parse(evt.data);
-    addMessage(data.msg);
-};
+    if (this.value == "")
+        return;
 
-socket.onclose = function() {
-    open = false;
+    conn.sendMsg(this.value);
 
-    addMessage("Disconnected");
-};
+    this.value = "";
+});

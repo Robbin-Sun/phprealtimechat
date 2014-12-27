@@ -3,8 +3,8 @@
         "cboden/ratchet": "~0.3"
     },
     "autoload": {
-        "classmap": [
-            "bin/Chat.php"
-        ]
+        "psr-4": {
+            "Chat\\": "bin/src/"
+        }
     }
 }
