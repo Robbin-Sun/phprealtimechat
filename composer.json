@@ -1,6 +1,7 @@
 {
     "require": {
-        "cboden/ratchet": "~0.3"
+        "cboden/ratchet": "^0.3.3",
+        "guzzle/guzzle": "^3.9"
     },
     "autoload": {
         "psr-4": {
