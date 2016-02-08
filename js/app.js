@@ -4,7 +4,7 @@ var chatcontainer = document.getElementById("chatcontainer");
 var conn;
 
 username.addEventListener('keypress', function(evt) {
-    if (evt.charCode != 13 || this.value == "")
+    if (evt.keyCode != 13 || this.value == "")
         return;
 
     evt.preventDefault();
@@ -17,7 +17,7 @@ username.addEventListener('keypress', function(evt) {
 });
 
 messagebox.addEventListener('keypress', function(evt) {
-    if (evt.charCode != 13 || conn == undefined)
+    if (evt.keyCode != 13 || conn == undefined)
         return;
 
     evt.preventDefault();
